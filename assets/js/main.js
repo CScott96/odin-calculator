@@ -1,7 +1,22 @@
 const title = document.querySelector("#Title");
 const titleText = document.createElement("h1");
+const calcDigits = document.querySelectorAll(".digit");
+
+function initialise() {
+  calcDigits.forEach((digit) => {
+    digit.addEventListener("click", () => {
+      const digitValue = digit.innerText;
+      updateNumbers(digitValue);
+    });
+  });
+}
 
 let num1, num2, operator;
+
+function updateNumbers(number) {
+  if (num1 == null) {
+  }
+}
 
 titleText.innerText = "Odin Calculator";
 title.appendChild(titleText);
