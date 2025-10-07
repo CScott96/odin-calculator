@@ -6,6 +6,9 @@ console.log(calcOperator);
 const equalsBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
 const screen = document.querySelector("#Screen");
+const screenDig1 = screen.querySelector("#Dig1");
+const screenDig2 = screen.querySelector("#Dig2");
+const screenOp = screen.querySelector("#Op");
 
 function initialise() {
   calcDigits.forEach((digit) => {
@@ -39,9 +42,11 @@ function updateNumbers(number) {
   if (num1 == false) {
     num1 = parseInt(number);
     console.log("num1 " + num1);
+    screenDig1.innerText = num1;
   } else if (num2 == false) {
     num2 = parseInt(number);
     console.log("num2 " + num2);
+    screenDig2.innerText = num2;
   } else {
     num1 = parseInt(number);
     num2 = false;
@@ -51,6 +56,7 @@ function updateNumbers(number) {
 
 function updateOperator(operatorBtn) {
   calcSign = operatorBtn;
+  screenOp.innerText = calcSign;
   console.log(calcSign);
 }
 
