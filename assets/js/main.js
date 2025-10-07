@@ -10,12 +10,16 @@ function initialise() {
   calcDigits.forEach((digit) => {
     digit.addEventListener("click", () => {
       const digitValue = digit.innerText;
+      //console.log(digitValue);
       updateNumbers(digitValue);
     });
   });
-  calcOperator.addEventListener("click", () => {
-    const operatorValue = operator.innerText;
-    updateOperator(operatorValue);
+  calcOperator.forEach((operatorBtn) => {
+    operatorBtn.addEventListener("click", () => {
+      const operatorValue = operator.innerText;
+      console.log(operatorValue);
+      updateOperator(operatorValue);
+    });
   });
   equalsBtn.addEventListener("click", () => {
     operate();
@@ -25,15 +29,22 @@ function initialise() {
   });
 }
 
-let num1, num2, operator;
+let num1 = false;
+let num2 = false;
+let operator = false;
 
 function updateNumbers(number) {
-  if (num1 == null) {
-    num1 = number;
-  } else if (num2 == null) {
+  console.log(number);
+  if (num1 == false) {
+    num1 = parseInt(number);
+    console.log("num1 " + num1);
+  } else if (num2 == false) {
     num2 = number;
+    console.log("num2 " + num2);
   } else {
     num1 = number;
+    num2 = false;
+    console.log("num1 " + num1);
   }
 }
 
@@ -79,3 +90,5 @@ function operate(num1, num2, operator) {
       console.log("no operator passed");
   }
 }
+
+initialise();
