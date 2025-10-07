@@ -2,6 +2,7 @@ const title = document.querySelector("#Title");
 const titleText = document.createElement("h1");
 const calcDigits = document.querySelectorAll(".digit");
 const calcOperator = document.querySelectorAll(".operator");
+console.log(calcOperator);
 const equalsBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
 const screen = document.querySelector("#Screen");
@@ -16,13 +17,13 @@ function initialise() {
   });
   calcOperator.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", () => {
-      const operatorValue = operator.innerText;
-      console.log(operatorValue);
+      const operatorValue = operatorBtn.innerText;
+      // console.log(operatorValue);
       updateOperator(operatorValue);
     });
   });
   equalsBtn.addEventListener("click", () => {
-    operate();
+    operate(num1, num2, calcSign);
   });
   clearBtn.addEventListener("click", () => {
     clearCalc();
@@ -31,7 +32,7 @@ function initialise() {
 
 let num1 = false;
 let num2 = false;
-let operator = false;
+let calcSign = false;
 
 function updateNumbers(number) {
   console.log(number);
@@ -39,21 +40,22 @@ function updateNumbers(number) {
     num1 = parseInt(number);
     console.log("num1 " + num1);
   } else if (num2 == false) {
-    num2 = number;
+    num2 = parseInt(number);
     console.log("num2 " + num2);
   } else {
-    num1 = number;
+    num1 = parseInt(number);
     num2 = false;
     console.log("num1 " + num1);
   }
 }
 
 function updateOperator(operatorBtn) {
-  operator = operatorBtn;
+  calcSign = operatorBtn;
+  console.log(calcSign);
 }
 
 function clearCalc() {
-  (num1, num2, (operator = ""));
+  ((num1 = false), (num2 = false), (calcSign = false));
 }
 
 titleText.innerText = "Odin Calculator";
@@ -72,19 +74,20 @@ function multiplication(num1, num2) {
   console.log(num1 * num2);
 }
 
-function operate(num1, num2, operator) {
-  switch (operator) {
+function operate(op1, op2, calcOperator) {
+  console.log(calcOperator);
+  switch (String(calcOperator)) {
     case "+":
-      addition(num1, num2);
+      addition(op1, op2);
       break;
     case "-":
-      subtraction(num1, num2);
+      subtraction(op1, op2);
       break;
     case "*":
-      multiplication(num1, num2);
+      multiplication(op1, op2);
       break;
     case "/":
-      division(num1, num2);
+      division(op1, op2);
       break;
     default:
       console.log("no operator passed");
