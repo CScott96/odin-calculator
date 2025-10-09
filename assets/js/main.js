@@ -33,35 +33,45 @@ function initialise() {
   });
 }
 
-let num1 = false;
-let num2 = false;
+let num1 = 0;
+let num2 = 0;
 let calcSign = false;
+let enteredSign = false;
 
 function updateNumbers(number) {
   console.log(number);
-  if (num1 == false) {
-    num1 = parseInt(number);
+  if (enteredSign == false && num1 == 0) {
+    num1 = number;
     console.log("num1 " + num1);
     screenDig1.innerText = num1;
-  } else if (num2 == false) {
-    num2 = parseInt(number);
-    console.log("num2 " + num2);
-    screenDig2.innerText = num2;
-  } else {
-    num1 = parseInt(number);
-    num2 = false;
+  } else if (calcSign == false && num1 != 0) {
+    num1 = num1 + number;
     console.log("num1 " + num1);
+    screenDig1.innerText = num1;
+  } else if (enteredSign == true && num2 == 0) {
+    num2 = number;
+    screenDig2.innerText = num2;
+  } else if (enteredSign == true && num2 != 0) {
+    num2 = num2 + number;
+    screenDig2.innerText = num2;
   }
 }
 
 function updateOperator(operatorBtn) {
+  enteredSign = true;
   calcSign = operatorBtn;
   screenOp.innerText = calcSign;
   console.log(calcSign);
 }
 
 function clearCalc() {
-  ((num1 = false), (num2 = false), (calcSign = false));
+  num1 = false;
+  num2 = false;
+  enteredSign = false;
+  calcSign = false;
+  screenDig1.innerText = "";
+  screenDig2.innerText = "";
+  screenOp.innerText = "";
 }
 
 titleText.innerText = "Odin Calculator";
