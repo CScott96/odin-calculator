@@ -43,26 +43,23 @@ function updateNumbers(number) {
   console.log(number);
   if (enteredSign == false && num1 == 0) {
     num1 = number;
-    console.log("num1 " + num1);
-    screenDig1.innerText = num1;
+    updateScreen("number1");
   } else if (calcSign == false && num1 != 0) {
     num1 = num1 + number;
-    console.log("num1 " + num1);
-    screenDig1.innerText = num1;
+    updateScreen("number1");
   } else if (enteredSign == true && num2 == 0) {
     num2 = number;
-    screenDig2.innerText = num2;
+    updateScreen("number2");
   } else if (enteredSign == true && num2 != 0) {
     num2 = num2 + number;
-    screenDig2.innerText = num2;
+    updateScreen("number2");
   }
 }
 
 function updateOperator(operatorBtn) {
   enteredSign = true;
   calcSign = operatorBtn;
-  screenOp.innerText = calcSign;
-  console.log(calcSign);
+  updateScreen("operator");
 }
 
 function clearCalc() {
@@ -121,9 +118,13 @@ function operate(op1, op2, calcOperator) {
 function updateScreen(refreshType) {
   console.log(refreshType);
   switch (refreshType) {
-    case "numbers":
+    case "number1":
       screenDig1.innerText = num1;
+      break;
+    case "number2":
       screenDig2.innerText = num2;
+      break;
+    case "operator":
       screenOp.innerText = calcSign;
       break;
     case "calculate":
