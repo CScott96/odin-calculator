@@ -84,7 +84,12 @@ function subtraction(num1, num2) {
   updateScreen("calculate");
 }
 function division(num1, num2) {
-  answer = num1 / num2;
+  fullFloat = num1 / num2;
+  if (!Number.isInteger(fullFloat)) {
+    answer = fullFloat.toFixed(4);
+  } else {
+    answer = fullFloat;
+  }
   updateScreen("calculate");
 }
 function multiplication(num1, num2) {
