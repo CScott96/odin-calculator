@@ -2,6 +2,7 @@ const title = document.querySelector("#Title");
 const titleText = document.createElement("h1");
 const calcDigits = document.querySelectorAll(".digit");
 const calcOperator = document.querySelectorAll(".operator");
+const calcError = document.querySelector("#ErrorLog > p > strong");
 console.log(calcOperator);
 const equalsBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
@@ -96,7 +97,7 @@ function multiplication(num1, num2) {
 function operate(op1, op2, calcOperator) {
   digit1 = parseInt(op1);
   digit2 = parseInt(op2);
-  console.log(calcOperator);
+
   switch (String(calcOperator)) {
     case "+":
       addition(digit1, digit2);
@@ -108,14 +109,21 @@ function operate(op1, op2, calcOperator) {
       multiplication(digit1, digit2);
       break;
     case "/":
-      division(digit1, digit2);
+      if (digit2 != 0) {
+        division(digit1, digit2);
+      } else {
+        updateScreen(
+          "error",
+          "who you kiddn\' kid? You think I'm CloudFlare with my infinite processing power to handle an infinite loop?",
+        );
+      }
       break;
     default:
-      console.log("no operator passed");
+      updateScreen("error", "no operator passed");
   }
 }
 
-function updateScreen(refreshType) {
+function updateScreen(refreshType, errorText = "Error") {
   console.log(refreshType);
   switch (refreshType) {
     case "number1":
@@ -132,6 +140,9 @@ function updateScreen(refreshType) {
       screenDig2.innerText = "";
       num1 = answer;
       num2 = 0;
+      break;
+    case "error":
+      calcError.innerText = errorText;
       break;
     case "clear":
     default:
