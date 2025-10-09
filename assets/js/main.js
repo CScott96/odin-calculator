@@ -35,6 +35,7 @@ function initialise() {
 
 let num1 = 0;
 let num2 = 0;
+let answer = 0;
 let calcSign = false;
 let enteredSign = false;
 
@@ -78,35 +79,64 @@ titleText.innerText = "Odin Calculator";
 title.appendChild(titleText);
 
 function addition(num1, num2) {
-  console.log(num1 + num2);
+  answer = num1 + num2;
+  console.log(answer);
+  updateScreen("calculate");
 }
 function subtraction(num1, num2) {
-  console.log(num1 - num2);
+  answer = num1 - num2;
+  updateScreen("calculate");
 }
 function division(num1, num2) {
-  console.log(num1 / num2);
+  answer = num1 / num2;
+  updateScreen("calculate");
 }
 function multiplication(num1, num2) {
-  console.log(num1 * num2);
+  answer = num1 * num2;
+  updateScreen("calculate");
 }
 
 function operate(op1, op2, calcOperator) {
+  digit1 = parseInt(op1);
+  digit2 = parseInt(op2);
   console.log(calcOperator);
   switch (String(calcOperator)) {
     case "+":
-      addition(op1, op2);
+      addition(digit1, digit2);
       break;
     case "-":
-      subtraction(op1, op2);
+      subtraction(digit1, digit2);
       break;
     case "*":
-      multiplication(op1, op2);
+      multiplication(digit1, digit2);
       break;
     case "/":
-      division(op1, op2);
+      division(digit1, digit2);
       break;
     default:
       console.log("no operator passed");
+  }
+}
+
+function updateScreen(refreshType) {
+  console.log(refreshType);
+  switch (refreshType) {
+    case "numbers":
+      screenDig1.innerText = num1;
+      screenDig2.innerText = num2;
+      screenOp.innerText = calcSign;
+      break;
+    case "calculate":
+      screenDig1.innerText = answer;
+      screenDig2.innerText = "";
+      screenOp.innerText = "";
+      break;
+    case "clear":
+    default:
+      screenDig1.innerText = "";
+      screenDig2.innerText = "";
+      screenOp.innerText = "";
+      break;
   }
 }
 
