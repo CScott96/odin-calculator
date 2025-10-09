@@ -24,6 +24,9 @@ body {
             gap: 0.25rem;
             & .control {
                 width: calc(33.333% - 0.5rem);
+                &.zero {
+                    width: calc(100% - 0.5rem);
+                }
             }
         }
     }

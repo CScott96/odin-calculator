@@ -44,7 +44,7 @@ function updateNumbers(number) {
   if (enteredSign == false && num1 == 0) {
     num1 = number;
     updateScreen("number1");
-  } else if (calcSign == false && num1 != 0) {
+  } else if (enteredSign == false && num1 != 0) {
     num1 = num1 + number;
     updateScreen("number1");
   } else if (enteredSign == true && num2 == 0) {
@@ -130,7 +130,8 @@ function updateScreen(refreshType) {
     case "calculate":
       screenDig1.innerText = answer;
       screenDig2.innerText = "";
-      screenOp.innerText = "";
+      num1 = answer;
+      num2 = 0;
       break;
     case "clear":
     default:
