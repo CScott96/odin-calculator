@@ -2,7 +2,7 @@ const title = document.querySelector("#Title");
 const titleText = document.createElement("h1");
 const calcDigits = document.querySelectorAll(".digit");
 const calcOperator = document.querySelectorAll(".operator");
-const calcError = document.querySelector("#ErrorLog > p > strong");
+const calcError = document.querySelector("#ErrorLog");
 console.log(calcOperator);
 const equalsBtn = document.querySelector(".equals");
 const clearBtn = document.querySelector(".clear");
@@ -68,9 +68,7 @@ function clearCalc() {
   num2 = false;
   enteredSign = false;
   calcSign = false;
-  screenDig1.innerText = "";
-  screenDig2.innerText = "";
-  screenOp.innerText = "";
+  updateScreen("clear");
 }
 
 titleText.innerText = "Odin Calculator";
@@ -114,7 +112,7 @@ function operate(op1, op2, calcOperator) {
       } else {
         updateScreen(
           "error",
-          "who you kiddn\' kid? You think I'm CloudFlare with my infinite processing power to handle an infinite loop?",
+          "You think I have the processing power for an infinite calculation?",
         );
       }
       break;
@@ -145,10 +143,10 @@ function updateScreen(refreshType, errorText = "Error") {
       calcError.innerText = errorText;
       break;
     case "clear":
-    default:
       screenDig1.innerText = "";
       screenDig2.innerText = "";
       screenOp.innerText = "";
+      calcError.innerText = " ";
       break;
   }
 }
